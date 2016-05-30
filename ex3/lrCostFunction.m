@@ -36,9 +36,28 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+%Hypotheses
+hx = sigmoid(X * theta);
+
+%%The cost without regression
+J_partial = (-y' * log(hx) - (1 - y)' * log(1 - hx)) ./ m;
 
 
+%%Regression Cost Added
+J_regression = (lambda/(2*m)) * sum(theta(2:end).^2);
 
+%%Cost when we add regression
+J = J_partial + J_regression;
+
+%Grad without regression
+grad_partial = (1/m) * (X' * (hx -y));
+
+%%Grad Cost Added
+grad_regression = (lambda/m) .* theta(2:end);
+
+grad_regression = [0; grad_regression];
+
+grad = grad_partial + grad_regression;
 
 
 
