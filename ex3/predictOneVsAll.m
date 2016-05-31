@@ -31,9 +31,17 @@ X = [ones(m, 1) X];
 %       
 
 
+%We first calculate the sigmoid X * all_theta to calculate the probability that an example
+%belong to a certain category. It should only belong to 1.
 
+temp = sigmoid(X * all_theta');
 
+%This gives the the max number in each row, and also the position where the
+%max index is.
+[max_value, max_index] = max(temp, [], 2);
 
+p = max_index;
+%p = max(X, [], 2);
 
 
 % =========================================================================
