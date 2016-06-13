@@ -39,25 +39,25 @@ grad = zeros(size(theta));
 %Hypotheses
 hx = sigmoid(X * theta);
 
-%%The cost without regression
+%%The cost without regularization
 J_partial = (-y' * log(hx) - (1 - y)' * log(1 - hx)) ./ m;
 
 
 %%Regression Cost Added
-J_regression = (lambda/(2*m)) * sum(theta(2:end).^2);
+J_regularization = (lambda/(2*m)) * sum(theta(2:end).^2);
 
-%%Cost when we add regression
-J = J_partial + J_regression;
+%%Cost when we add regularization
+J = J_partial + J_regularization;
 
-%Grad without regression
+%Grad without regularization
 grad_partial = (1/m) * (X' * (hx -y));
 
 %%Grad Cost Added
-grad_regression = (lambda/m) .* theta(2:end);
+grad_regularization = (lambda/m) .* theta(2:end);
 
-grad_regression = [0; grad_regression];
+grad_regularization = [0; grad_regularization];
 
-grad = grad_partial + grad_regression;
+grad = grad_partial + grad_regularization;
 
 
 
