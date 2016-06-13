@@ -43,7 +43,7 @@ hx = sigmoid(X * theta);
 J_partial = (-y' * log(hx) - (1 - y)' * log(1 - hx)) ./ m;
 
 
-%%Regression Cost Added
+%%Regularization Cost Added
 J_regularization = (lambda/(2*m)) * sum(theta(2:end).^2);
 
 %%Cost when we add regularization
